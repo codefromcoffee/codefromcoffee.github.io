@@ -1,0 +1,32 @@
+---
+layout: default
+title: Blog
+---
+
+<!-- This loops through the paginated posts -->
+{% for post in paginator.posts %}
+  <br/>
+  <p class="lead"><a style="color:#FF9900;" href="{{ post.url }}">{{ post.title }}</a></p>
+  <hr/>
+
+  <div class="content">
+    {{ post.content | strip_html | truncatewords:75}}
+  </div>
+{% endfor %}
+
+<!-- Pagination links -->
+<nav>
+  <ul class="pager">
+  {% if paginator.previous_page %}
+    <li><a href="{{ paginator.previous_page_path }}" title="previous"><span class="glyphicon glyphicon-arrow-left style_bottom_menu" aria-hidden="true"></span></a></li>
+  {% else %}
+    <li class="disabled"><a class="disabled" title="previous"><span class="glyphicon glyphicon-arrow-left style_bottom_menu" aria-hidden="true"></span></a></li>
+  {% endif %}
+  <span class="page_number ">{{ paginator.page }} of {{ paginator.total_pages }}</span>
+  {% if paginator.next_page %}
+    <li><a href="{{ paginator.next_page_path }}" title="next"><span class="glyphicon glyphicon-arrow-right style_bottom_menu" aria-hidden="true"></span></a></li>
+  {% else %}
+    <li class="disabled"><a class="disabled" title="next"><span class="glyphicon glyphicon-arrow-right style_bottom_menu" aria-hidden="true"></span></a></li>
+  {% endif %}
+</ul>
+</nav>
